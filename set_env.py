@@ -29,11 +29,11 @@ def set_paths():
     if (os.path.expanduser("~") == '/home/doktormatte'):
         env = 'local'
     # Set the import and export paths based on the environment (local or cloud)
-    import_path = '/home/doktormatte/Dropbox/Dokumente/Studium/MA_SciComp/Data/'
-    export_path = '/home/doktormatte/Dropbox/Dokumente/Studium/MA_SciComp/Data/results/'
+    import_path = 'path/to/original_time_series'
+    export_path = 'path/to/export_results'
     if env == 'cloud':
-        import_path = '/content/data/Data/'
-        export_path = '/drive/MyDrive/'
+        import_path = 'path/to/original_time_series'
+        export_path = 'path/to/export_results'
     return import_path, export_path
 
 

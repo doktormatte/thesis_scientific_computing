@@ -69,8 +69,8 @@ def add_to_backbones(row, dataset, stat_name):
 
 
 # define import and export paths
-import_path = '/home/doktormatte/Dropbox/Dokumente/Studium/MA_SciComp/original_data/Final/' 
-export_path = '/home/doktormatte/Dropbox/Dokumente/Studium/MA_SciComp/Data/'
+import_path = 'path/to/original_event_based_datasets'
+export_path = 'path/to/export_generated_time_series'
 
 
 datasets = ['acn_caltech', 'acn_jpl', 'boulder', 'palo_alto']
