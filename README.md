@@ -1,4 +1,4 @@
-# Deep Learning for Electric Vehicle Energy Demand and Charging Station Occupancy Forecasting
+# Deep Learning Models for Electric Vehicle Energy Demand and Charging Station Occupancy Forecasting
 
 Framework for performing data pre-processing, hyperparameter search and forecasting evaluation of deep learning models as described within the thesis.
 
