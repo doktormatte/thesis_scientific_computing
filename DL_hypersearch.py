@@ -76,7 +76,7 @@ def main():
     # define hyperparameter ranges    
 
     bat_size = random.choice([4, 8, 16, 32, 64, 128]) 
-    n_epoch = random.choice([16, 32, 64, 128, 256])     
+    n_epoch = 500  # number of epochs is optimized by early stopping     
 
     grad_clip = random.choice([None, 1.1, 2.0, 4.0, 8.0])            
     optimizer = random.choice([1,2])   
@@ -206,7 +206,7 @@ def main():
             model.compile(loss='mean_squared_error', optimizer=opt, metrics=['mse'])
         
         # fit model
-        callback = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=n_epoch//8,restore_best_weights=True)
+        callback = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=5,restore_best_weights=True)
         start = datetime.now()
         if stateful:
             history = model.fit(

@@ -62,12 +62,7 @@ def main():
     
     bat_size = best_model_dict['bat_size']    
     stateful = best_model_dict['stateful']
-    n_epoch = best_model_dict['n_epoch']  
-    for i in range(4,9):
-        if 2**i >= n_epoch:
-            n_epoch = 2**i
-            break
-    best_model_dict['n_epoch']= n_epoch
+    n_epoch = best_model_dict['n_epoch']      
     
     optimizer = best_model_dict['optimizer']
     grad_clip = best_model_dict['grad_clip']    
@@ -129,23 +124,20 @@ def main():
         else:
             model.compile(loss='mean_squared_error', optimizer=opt, metrics=['mse'])
         
-        # fit model
-        callback = tf.keras.callbacks.EarlyStopping(monitor='loss', patience=n_epoch//8,restore_best_weights=True)        
+        # fit model               
         if stateful:
             history = model.fit(
                 train_generator,                
                 epochs=n_epoch,
                 batch_size=bat_size,
-                shuffle=False,
-                callbacks=[callback]
+                shuffle=False                
                 )          
             temp = model.predict(test_generator,batch_size=bat_size)
         else:
             history = model.fit(
                 train_generator,                
                 epochs=n_epoch,                    
-                shuffle=False,
-                callbacks=[callback]
+                shuffle=False
                 )       
             temp = model.predict(test_generator)     
         
