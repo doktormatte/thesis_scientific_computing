@@ -44,8 +44,6 @@ def main():
     models = ['AdaBoost', 'XGBoost']    
     architecture = random.choice(models)
     
-    
-    
     # define hyperparameter ranges; only one feature set is used here -> parameters can be modified to conduct experiments on several feature sets
     include_lags = 1
     include_avgs = 1    
@@ -74,8 +72,7 @@ def main():
     
     # lists for collecting results
     val_losses = []    
-    durs_all = [] 
-    
+    durs_all = []     
     
     # run experiments on ten randomly sampled time series for occupancy and one aggregated time series for energy demand
     for _ in range(trial_num):
@@ -108,8 +105,7 @@ def main():
         # add average occupancy rates / average energy demand
         if include_avgs == 1:            
             train_df = insert_avgs(train_df, averages)
-            val_df = insert_avgs(val_df, averages)
-        
+            val_df = insert_avgs(val_df, averages)        
         
         # generate datasets
         X_train, y_train = read_data_ml(train_df)           
@@ -172,7 +168,7 @@ def main():
             res_all.append(_loss) 
         val_losses.append(np.mean(res_all))
     
-    # collect average results     
+    # collect and average results     
     model_prop_dict['min_val_loss'] = np.mean(val_losses)
     model_prop_dict['dur'] = np.mean(durs_all)          
     model_prop_dict['trial'] = trial                  

@@ -74,7 +74,6 @@ def main():
     
     
     # define hyperparameter ranges    
-
     bat_size = random.choice([4, 8, 16, 32, 64, 128]) 
     n_epoch = 500  # number of epochs is optimized by early stopping     
 
@@ -250,7 +249,7 @@ def main():
         # reset tensorflow to avoid memory congestion
         reset_tensorflow_keras_backend(os.environ)       
         
-    # collect average results 
+    # collect and average results 
     model_prop_dict['n_epoch'] = int(np.mean(epochs_all) // 1)
     model_prop_dict['min_val_loss'] = np.mean(val_losses)
     model_prop_dict['dur'] = np.mean(durs_all)          
