@@ -60,6 +60,7 @@ def main():
     hyper_dict = {'n_estimators': {'AdaBoost': [32,64,128], 'XGBoost': [32,128,512]}, 'max_depth': {'AdaBoost': [1,2,3], 'XGBoost': [3,6,10]}, 'learning_rate': {'AdaBoost': [0.1,0.5,1,2], 'XGBoost': [0.5,1,2]}}
     model_prop_dict['n_estimators'] = random.choice(hyper_dict['n_estimators'][architecture])
     model_prop_dict['max_depth'] = random.choice(hyper_dict['max_depth'][architecture])
+    model_prop_dict['learning_rate'] = random.choice(hyper_dict['learning_rate'][architecture])
     model_prop_dict['alpha_reg'] = random.choice([0,0.5,1])
     model_prop_dict['lambda_reg'] = random.choice([0.5,1,2])   
     
