@@ -257,7 +257,8 @@ def main():
     model_prop_dict['trial'] = trial                  
     row = pd.DataFrame(columns=glob_res_cols)    
     row.dataset = [dirname]               
-    row.model = [model_prop_dict]     
+    row.model = [model_prop_dict]   
+    row.id = [model_name]
         
     # export results 
     wait_for_files([export_path + dirname + '_real.csv'])             
