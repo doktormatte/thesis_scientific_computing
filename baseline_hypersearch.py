@@ -14,6 +14,7 @@ from set_env import set_paths, set_seeds
 
 def main():
     
+    # set number of trials for random hyperparameter search
     trials = 1    
     
     # column names for global csv files that contain results of hyperparameter search and forecasting performance
