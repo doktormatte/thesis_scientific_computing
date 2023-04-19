@@ -18,7 +18,7 @@ def main():
     step_set = [2,4,8,16]
     for n_steps_in in step_set:
     
-        # grid search - on trial per per lookback window size
+        # grid search - on trial per lookback window size
         trials = 1    
         
         # column names for global csv files that contain results of hyperparameter search and forecasting performance
