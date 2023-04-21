@@ -69,6 +69,28 @@ def check_progress_hyper(df_progress, model_prop_dict, trials):
         return 0
     return trial
 
+# check how many hyperparameter search trials were already conducted for the given baseline model and forecasting horizon
+def check_progress_hyper_baseline(df_progress, model_prop_dict, trials):
+    trial = 1
+    mode = model_prop_dict['mode']
+    architecture = model_prop_dict['architecture']
+    n_steps_out = model_prop_dict['n_steps_out']    
+    n_steps_in = model_prop_dict['n_steps_in']    
+    for i in range(len(df_progress['model'].values)):              
+        dict_progress = ast.literal_eval(df_progress['model'].values[i])        
+        if 'architecture' in dict_progress:
+            if dict_progress['architecture'] == architecture:
+                if dict_progress['n_steps_out'] == n_steps_out:
+                    if dict_progress['n_steps_in'] == n_steps_in:
+                        if 'min_val_loss' in dict_progress:                 
+                            if 'mode' in dict_progress: 
+                                if dict_progress['mode'] == mode:
+                                    if 'trial' in dict_progress:
+                                        trial += 1
+    if trial > trials:
+        return 0
+    return trial
+
 # check whether the forecaster with the given hyperparameter configuration was already evaluated 
 def check_progress_forecast(df_progress, model_prop_dict):
     for i in range(len(df_progress['model'].values)):                 

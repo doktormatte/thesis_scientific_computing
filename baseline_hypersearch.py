@@ -7,9 +7,11 @@ import pickle
 from sklearn.metrics import mean_squared_error
 from keras.losses import binary_crossentropy
 from sklearn import linear_model
-from file_operations import wait_for_files, check_progress_hyper
+from file_operations import wait_for_files, check_progress_hyper_baseline
 from data_generators import insert_lags, insert_avgs, read_data_ml
 from set_env import set_paths, set_seeds
+
+import time
 
 
 def main():
@@ -57,12 +59,12 @@ def main():
         model_prop_dict['include_lags'] = include_lags
         model_prop_dict['include_avgs'] = include_avgs     
         
-        # check for hyperparameter search progress
+        # check for hyperparameter search progress        
         wait_for_files([export_path + dirname + '_real.csv']) 
         glob_res_df = pd.read_csv(export_path + dirname + '_real.csv')       
-        trial = check_progress_hyper(glob_res_df[glob_res_df.dataset == dirname], model_prop_dict, trials)
+        trial = check_progress_hyper_baseline(glob_res_df[glob_res_df.dataset == dirname], model_prop_dict, trials)
         if trial == 0:
-            return    
+            continue    
         
         # lists for collecting results
         val_losses = []    
@@ -183,5 +185,5 @@ if __name__ == '__main__':
             break
         except Exception as e:
             print(e)
-            break
+            continue
 
